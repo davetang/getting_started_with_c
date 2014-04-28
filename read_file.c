@@ -17,7 +17,6 @@ int main( int argc, char *argv[] )
   int id;
   int score;
   char strand;
-  char line[1000];
 
   char *my_file_name = argv[1];
 
@@ -28,9 +27,14 @@ int main( int argc, char *argv[] )
     exit(1);
   }
 
-  while(fgets(line, 80, ifp) != NULL){
-    sscanf (line, "%s %d %d %d %d %s", &chr, &start, &end, &id, &score, &strand);
-    /* printf ("%c\n", chr); */
+  /* http://stackoverflow.com/questions/3501338/c-read-file-line-by-line */
+  char * line = NULL;
+  size_t len = 0;
+  ssize_t read;
+
+  while ((read = getline(&line, &len, ifp)) != -1) {
+    /* printf("Retrieved line of length %zu :\n", read); */
+    printf("%s", line);
   }
 
   fclose(ifp);
