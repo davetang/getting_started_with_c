@@ -11,12 +11,12 @@ int main( int argc, char *argv[] )
 
   FILE *ifp;
   char *mode = "r";
-  char chr;
+  char chr [30];
   int start;
   int end;
-  int id;
+  char id [30];
   int score;
-  char strand;
+  char strand [2];
 
   char *my_file_name = argv[1];
 
@@ -34,7 +34,8 @@ int main( int argc, char *argv[] )
 
   while ((read = getline(&line, &len, ifp)) != -1) {
     /* printf("Retrieved line of length %zu :\n", read); */
-    printf("%s", line);
+    sscanf (line, "%s %d %d %s %d %s", chr, &start, &end, id, &score, strand);
+    printf ("%s\t%d\t%d\t%s\t%d\t%s\n", chr, start, end, id, score, strand);
   }
 
   fclose(ifp);
