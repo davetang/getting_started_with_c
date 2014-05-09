@@ -18,14 +18,20 @@ int main(void)
 
    */
 
-   /* http://www.learnconline.com/2010/04/data-types-in-c-programming-language.html */
+   // http://www.learnconline.com/2010/04/data-types-in-c-programming-language.html
 
-   /* int is used to define integer numbers. It occupies 2 bytes of memory (16-bit compiler) */
+   /*
+      int is used to define integer numbers. It occupies 2 bytes of memory (16-bit compiler)
+      integers can be defined using char, int, short, long or long long
+      Unsigned integers are whole numbers that can only be positive
+      defined using unsigned char, unsigned int, unsigned short, unsigned long or unsigned long long
+   */
    int my_integer;
    my_integer = 5;
    printf("my_integer -> %i\n", my_integer);
 
    /* float is used to define floating type numbers. It occupies 4 bytes of memory (16-bit compiler) */
+   // can be defined using float and double
    float my_float;
    my_float = 1.200000001;
    printf("my_float -> %f\n", my_float);
@@ -53,7 +59,17 @@ int main(void)
    my_long_double = 1.2000000000001;
    printf("my_long_double -> %Lf\n", my_long_double);
 
-   // http://stackoverflow.com/questions/5739888/what-is-the-difference-between-signed-and-unsigned-int //
+   // http://stackoverflow.com/questions/5739888/what-is-the-difference-between-signed-and-unsigned-int
+
+   /*
+      C uses arrays of characters to define strings
+
+      Arrays are special variables that can hold more than one value using the same variable, using an index.
+   */
+
+   // define an array of 10 integers
+   int number[10];
+
 
    return 0;
 }
