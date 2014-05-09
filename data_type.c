@@ -67,8 +67,53 @@ int main(void)
       Arrays are special variables that can hold more than one value using the same variable, using an index.
    */
 
-   // define an array of 10 integers
-   int number[10];
+   // define an array of 3 integers
+   int number[3];
+   number[0] = 5;
+   number[1] = 10;
+   number[2] = 20;
+
+   printf("The second number in the array is %d\n", number[1]);
+
+   /*
+      use pointer to a character array to define a simple string; but this string can only be read
+
+      define string as a local character array, to be able to manipulate it
+   */
+
+   // pointer
+   char * seq_read = "ATCAGTAGACCAGT";
+
+   // local array
+   // empty brackets tells the compiler to calculate the size of the array automatically
+   char seq[] = "ATCAGTAGACCAGT";
+
+   // use printf to format a string
+   printf("Read only seq: %s\nWrite seq: %s\n", seq_read, seq);
+
+   /*
+      Size of array using sizeof()
+
+      http://stackoverflow.com/questions/37538/how-do-i-determine-the-size-of-my-array-in-c
+
+   */
+
+   int first = sizeof(seq);
+   int second = sizeof(seq[0]);
+   int third = first/second;
+
+   printf("%d\t%d\t%d\n", first, second, third);
+
+   /*
+      The function strncmp compares two strings and returns 0 if they are equal
+   */
+
+   // or we can simply use strncmp(seq_read, seq) without the length of the array
+   if (strncmp(seq_read, seq, (sizeof(seq)/sizeof(seq[0])-1) ) == 0){
+      printf("seq_read and seq are equal\n");
+   } else {
+      printf("seq_read and seq are not equal\n");
+   }
 
 
    return 0;
