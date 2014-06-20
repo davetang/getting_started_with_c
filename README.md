@@ -18,3 +18,8 @@ How to generate the files
 ### random.bed
 
 `randomBed -g hg19.genome -n 10 -seed 31 > random.bed`
+
+Links
+--------------------
+
+I'm keeping my notes here <http://davetang.org/wiki2/index.php?title=C>
