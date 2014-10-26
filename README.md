@@ -1,11 +1,17 @@
 Learning how to code in C
 --------------------
 
-My repository for learning how to code in C.
+My repository for learning how to code in C. To clone type:
 
-To compile
+`git clone https://github.com/davetang/getting_started_with_c.git`
 
-`gcc input_output.c`
+To compile, type
+
+`gcc input_output.c -o choose_number`
+
+or
+
+`make`
 
 How to generate the files
 --------------------
