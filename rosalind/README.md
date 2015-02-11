@@ -4,3 +4,11 @@ Rosalind is a platform for learning bioinformatics and programming through probl
 make
 make clean
 ```
+
+DNA
+
+```
+count_nuc rosalind_dna.txt 
+A C G T
+262 241 255 236
+```

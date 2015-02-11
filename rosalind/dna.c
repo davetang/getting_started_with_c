@@ -1,51 +1,76 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
 
 #define BUFFERSIZE 1000
+#define _GNU_SOURCE
 
-int main()
+int main( int argc, char *argv[] )
 {
-   char s[BUFFERSIZE];
-   printf("Please enter DNA string: ");
 
-   fgets(s, BUFFERSIZE , stdin);
+   if(argc != 2){
+     fprintf(stderr, "Please input a file name\n");
+     exit(1);
+   }
 
-   /*remove newline*/
-   size_t ln = strlen(s) - 1;
-   if (s[ln] == '\n')
-   s[ln] = '\0';
+   char *my_file = argv[1];
 
-   /*
-   printf("%s\n", s);
-   */
+   FILE * fp;
+   char * line = NULL;
+   size_t len = 0;
+   ssize_t read;
+
+   fp = fopen(my_file, "r");
+   if (fp == NULL)
+      exit(EXIT_FAILURE);
 
    int a, c, g, t, i;
-   char x[1];
+   /* printf("Retrieved line of length %zu :\n", read); */
+   while ((read = getline(&line, &len, fp)) != -1) {
+      /*
+      printf("Retrieved line of length %zu :\n", read);
+      printf("%s", line);
+      */
 
-   for (i = 0; i < strlen(s); i++){
-      /* memcpy(dest, src, strlen(src)+1); */
-      memcpy( x, &s[i], 1 );
-      *x = toupper(*x);
-      switch(*x){
-      case 'A':
-         ++a;
-         break;
-      case 'C':
-         ++c;
-         break;
-      case 'G':
-         ++g;
-         break;
-      case 'T':
-         ++t;
-         break;
-      default:
-         printf("Skipping unrecognised nucleotide: %s\n", x);
-         break;
+      /*remove newline*/
+      size_t ln = strlen(line) - 1;
+      if (line[ln] == '\n')
+      line[ln] = '\0';
+
+      /* I'm still unsure how to define x */
+      char x[BUFFERSIZE];
+
+      for (i = 0; i < strlen(line); i++){
+         /* memcpy(dest, src, strlen(src)+1); */
+         memcpy( x, &line[i], 1 );
+         *x = toupper(*x);
+         switch(*x){
+         case 'A':
+            ++a;
+            break;
+         case 'C':
+            ++c;
+            break;
+         case 'G':
+            ++g;
+            break;
+         case 'T':
+            ++t;
+            break;
+         default:
+            printf("Skipping unrecognised nucleotide: %s\n", x);
+            break;
+         }
       }
    }
 
-   printf("%i %i %i %i", a, c, g, t);
+   printf("%c %c %c %c\n", 'A', 'C', 'G', 'T');
+   printf("%i %i %i %i\n", a, c, g, t);
+
+   fclose(fp);
+   if (line)
+      free(line);
+
    return 0;
 }
