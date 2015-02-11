@@ -25,7 +25,13 @@ int main( int argc, char *argv[] )
    if (fp == NULL)
       exit(EXIT_FAILURE);
 
-   int a, c, g, t, skipped, i;
+   int a = 0;
+   int c = 0;
+   int g = 0;
+   int t = 0;
+   int skipped = 0;
+   int i = 0;
+
    /* printf("Retrieved line of length %zu :\n", read); */
    while ((read = getline(&line, &len, fp)) != -1) {
       /*
@@ -38,30 +44,27 @@ int main( int argc, char *argv[] )
       if (line[ln] == '\n')
       line[ln] = '\0';
 
-      /* I'm still unsure how to define x */
-      char x[BUFFERSIZE];
-
       for (i = 0; i < strlen(line); i++){
+         char x;
          /* memcpy(dest, src, strlen(src)+1); */
-         memcpy( x, &line[i], 1 );
-         *x = toupper(*x);
-         switch(*x){
-         case 'A':
-            ++a;
-            break;
-         case 'C':
-            ++c;
-            break;
-         case 'G':
-            ++g;
-            break;
-         case 'T':
-            ++t;
-            break;
-         default:
-            /* printf("Skipping unrecognised nucleotide: %s\n", x); */
-            ++skipped;
-            break;
+         memcpy( &x, &line[i], 1 );
+         x = toupper(x);
+         switch(x){
+            case 'A':
+               ++a;
+               break;
+            case 'C':
+               ++c;
+               break;
+            case 'G':
+               ++g;
+               break;
+            case 'T':
+               ++t;
+               break;
+            default:
+               ++skipped;
+               break;
          }
       }
    }
