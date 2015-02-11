@@ -25,7 +25,7 @@ int main( int argc, char *argv[] )
    if (fp == NULL)
       exit(EXIT_FAILURE);
 
-   int a, c, g, t, i;
+   int a, c, g, t, skipped, i;
    /* printf("Retrieved line of length %zu :\n", read); */
    while ((read = getline(&line, &len, fp)) != -1) {
       /*
@@ -59,14 +59,15 @@ int main( int argc, char *argv[] )
             ++t;
             break;
          default:
-            printf("Skipping unrecognised nucleotide: %s\n", x);
+            /* printf("Skipping unrecognised nucleotide: %s\n", x); */
+            ++skipped;
             break;
          }
       }
    }
 
-   printf("%c %c %c %c\n", 'A', 'C', 'G', 'T');
-   printf("%i %i %i %i\n", a, c, g, t);
+   printf("%c %c %c %c %s\n", 'A', 'C', 'G', 'T', "Skipped");
+   printf("%i %i %i %i %i\n", a, c, g, t, skipped);
 
    fclose(fp);
    if (line)
