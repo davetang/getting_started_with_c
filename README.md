@@ -5,27 +5,28 @@ My repository for learning how to code in C. To clone type:
 
 `git clone https://github.com/davetang/getting_started_with_c.git`
 
-To compile, type
+or
+
+`git clone git@github.com:davetang/getting_started_with_c.git`
+
+To compile a specific example, type
 
 `gcc input_output.c -o choose_number`
 
-or
+or type to compile all the examples
 
 `make`
 
-How to generate the files
+The binaries will be stored in the bin folder.
+
+Rosalind
 --------------------
 
-### hg19.genome
-
-<code>mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -e \
-"select chrom, size from hg19.chromInfo"  > hg19.genome</code>
-
-### random.bed
-
-`randomBed -g hg19.genome -n 10 -seed 31 > random.bed`
+I have also decided to solve [Rosalind problems](http://rosalind.info/problems/list-view/) using C. The solutions will be stored in the rosalind folder.
 
 Links
 --------------------
 
 I'm keeping my notes here <http://davetang.org/wiki2/index.php?title=C>
+
+My blog post on learning C <http://davetang.org/muse/2014/04/28/getting-started-with-c/>

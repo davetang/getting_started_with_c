@@ -8,11 +8,11 @@ make clean
 DNA
 
 ```
-count_nuc rosalind_dna.txt 
+bin/count_nuc rosalind_dna.txt 
 A C G T Skipped
 262 241 255 236 0
 
-time count_nuc ~/genome/hg19.fa 
+time bin/count_nuc ~/genome/hg19.fa 
 A C G T Skipped
 844868045 585017969 585360436 846097277 234350394
 

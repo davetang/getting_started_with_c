@@ -2,3 +2,4 @@ a.out
 *.swp
 hg19.genome
 random.bed
+bin
