@@ -1,32 +1,84 @@
-Learning how to code in C
---------------------
+Learning C
+----------
 
-My repository for learning how to code in C. To clone type:
+Why am I learning C? Check out my [blog post](http://davetang.org/muse/2014/04/28/getting-started-with-c/). You can create a PDF of this README using [pandoc](http://pandoc.org/):
 
-`git clone https://github.com/davetang/getting_started_with_c.git`
+~~~~{.bash}
+pandoc README.md -o readme.pdf
+~~~~
 
-or
+Getting started
+---------------
 
-`git clone git@github.com:davetang/getting_started_with_c.git`
+You will need a compiler, such as `gcc`; I have some notes of my [GitHub page](http://davetang.github.io/2014/11/03/compiling.html) on compiling.
 
-To compile a specific example, type
+To compile a specific example, type:
 
-`gcc input_output.c -o choose_number`
+~~~~{.bash}
+gcc input_output.c -o choose_number
+~~~~
 
-or type to compile all the examples
+or to compile all the examples, type:
 
-`make`
+~~~~{.bash}
+make
+~~~~
 
 The binaries will be stored in the bin folder.
 
-Rosalind
---------------------
+Introduction
+------------
 
-I have also decided to solve [Rosalind problems](http://rosalind.info/problems/list-view/) using C. The solutions will be stored in the rosalind folder.
+Here's the source code of a simple C program:
+
+~~~~{.c}
+#include <stdio.h>
+
+/*
+   This is a comment
+*/
+
+int main(){
+   printf("Hello world.\n");
+   return 0;
+}
+~~~~
+
+The [include directive](https://en.wikipedia.org/wiki/Include_directive) tells the compiler to put code from the header called stdio.h into our program before creating the executable. The "main" function is called when the C program is executed, thereby running the printf() function. The return is used to tell the operating system whether the program has succeeded or not; a return value of 0 means success. Now to compile and to execute the program.
+
+~~~~{.bash}
+gcc hello.c -o say_hello
+
+say_hello 
+#Hello world.
+~~~~
+
+Data types
+----------
+
+Data types are used to store different types of data; basic types include `char`, `int`, and `float`. A variable of type `char` stores a single character; type `int` stores integers; and type `float` stores decimal numbers. The keywords `char`, `int`, and `float` are used to declare a variable. For example, in `data_type.c`:
+
+~~~~{.c}
+char my_char;
+my_char = 'A';
+printf("my_char -> %c\n", my_char);
+
+int my_integer;
+my_integer = 5;
+printf("my_integer -> %i\n", my_integer);
+
+float my_float;
+my_float = 1.200000001;
+printf("my_float -> %f\n", my_float);
+~~~~
+
+Rosalind
+--------
+
+I am attempting to solve [Rosalind problems](http://rosalind.info/problems/list-view/) using C. The solutions will be stored in the rosalind folder.
 
 Links
---------------------
+-----
 
-I'm keeping my notes here <http://davetang.org/wiki2/index.php?title=C>
+Some notes on my [Wiki](http://davetang.org/wiki2/index.php?title=C).
 
-My blog post on learning C <http://davetang.org/muse/2014/04/28/getting-started-with-c/>

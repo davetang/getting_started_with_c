@@ -10,6 +10,8 @@ all:
 	gcc read_file.c -o bin/read_file
 	gcc reference.c -o bin/ref
 	gcc sscanf.c -o bin/sscanf
+	gcc hello.c -o bin/say_hello
  
 clean:
 	rm -rf bin
+

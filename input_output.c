@@ -22,7 +22,7 @@ int main()
    printf("You entered %d\n", this_is_a_number);
 
    /*
-   Get character from stdin
+   Get character from stdin. This line is included because many compiler environments will open a new console window, run the program, and then close the window before you can see the output. This command keeps that window from closing because the program is not done yet because it waits for you to hit enter. Including that line gives you time to see the program run. 
    */
    getchar();
 
