@@ -23,26 +23,26 @@ int multiply_by_ten(int x){
 
 */
 
-int multiply ( int num, ... ){   
+int multiply (int num, ... ){   
    va_list arguments;
    int total;
 
-   va_start ( arguments, num );
+   va_start (arguments, num);
 
    int x;
-   for ( x = 0; x < num; x++ ){   
-      total *= va_arg ( arguments, int );
+   for (x = 0; x < num; x++){   
+      total *= va_arg(arguments, int);
    }
-   va_end ( arguments );
+   va_end (arguments);
 
    return total;
 }
 
-int main ()
-{
+int main (){
    printf("%d\n", multiply_by_ten(10));
 
    printf("%d\n", multiply(3, 10, 5, 2));
   
    return 0;
 }
+

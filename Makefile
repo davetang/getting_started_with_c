@@ -12,6 +12,7 @@ all:
 	gcc sscanf.c -o bin/sscanf
 	gcc hello.c -o bin/say_hello
 	gcc cond.c -o bin/root_two
+	gcc switch_case.c -o bin/switch
 clean:
 	rm -rf bin
 

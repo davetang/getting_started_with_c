@@ -134,6 +134,61 @@ do {
 } while (0);
 ~~~~
 
+Functions
+---------
+
+Functions need to be declared right at the start or its prototype. Prototypes are declarations of functions; they are only necessary to alert the compiler about the existence of a function if we don't want to go ahead and fully define the function.
+
+~~~~{.c}
+/*
+   The general format for a prototype
+   return-type function_name (arg_type arg1, ..., arg_type argN); 
+*/
+
+int add (int a, int b);
+
+// the actual function
+int add (int a, int b){
+  return x + y;
+}
+~~~~
+
+See `function.c` for implementing functions with a variable number of arguments.
+
+Switch case
+-----------
+
+Switch case statements are a substitute for long `if` statements that compare a variable to several values.
+
+~~~~{.c}
+#include <stdio.h>
+
+int main(){
+   int input = 4;
+
+   switch (input) {
+      case 1:
+         printf("Input is %i\n", input);
+         break;
+      case 2:
+         printf("Input is %i\n", input);
+         break;
+      case 3:
+         printf("Input is %i\n", input);
+         break;
+      case 4:
+         printf("Input is %i\n", input);
+         break;
+      default:
+         printf("Input was not 1, 2, 3, or 4!\n");
+         break;
+   }
+
+   return 0;
+
+}
+~~~~
+
 Rosalind
 --------
 
