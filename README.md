@@ -1,7 +1,7 @@
 Learning C
 ----------
 
-Why am I learning C? Check out my [blog post](http://davetang.org/muse/2014/04/28/getting-started-with-c/). You can create a PDF of this README using [pandoc](http://pandoc.org/):
+Why am I learning C? Check out my [blog post](http://davetang.org/muse/2014/04/28/getting-started-with-c/) and this [post](http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html). You can create a PDF of this README using [pandoc](http://pandoc.org/):
 
 ~~~~{.bash}
 pandoc README.md -o readme.pdf
@@ -70,6 +70,68 @@ printf("my_integer -> %i\n", my_integer);
 float my_float;
 my_float = 1.200000001;
 printf("my_float -> %f\n", my_float);
+~~~~
+
+Conditionals
+------------
+
+Use `if`, `else if`, and `else`.
+
+~~~~{.c}
+#include <stdio.h>
+
+int main(){
+   float answer;
+
+   printf("What is the square root of 2?\n");
+   scanf("%f", &answer);
+
+   if (answer >  1.4141 && answer < 1.4143){
+      printf ("Correct!\n" );
+   } else if (answer > 1 && answer < 2){
+      printf("You are close!\n");
+   } else {
+      printf("Wrong!\n" );
+   }
+
+   return 0;
+}
+~~~~
+
+Loops
+-----
+
+There are three types of loops: `for`, `while`, and `do..while`; see `loop.c`.
+
+~~~~{.c}
+// for loop
+int series[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+int i;
+for (i = 0; i < 10; i++){
+   printf("%d\n", series[i]);
+}
+
+// while loop with break and continue statements
+int n = 0;
+while (1){
+   n++;
+   if (n % 2 == 1){
+      continue;
+   }
+
+   printf("%d is an even number\n", n);
+
+   // exit loop when n = 20
+   if (n == 20){
+      printf("Reached 20 loops\n");
+      break;
+   }
+}
+
+// do..while
+do {
+   printf( "I will run once even when a condition is not met\n" );
+} while (0);
 ~~~~
 
 Rosalind

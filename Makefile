@@ -11,7 +11,7 @@ all:
 	gcc reference.c -o bin/ref
 	gcc sscanf.c -o bin/sscanf
 	gcc hello.c -o bin/say_hello
- 
+	gcc cond.c -o bin/root_two
 clean:
 	rm -rf bin
 
