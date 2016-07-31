@@ -285,6 +285,47 @@ int main(){
 }
 ~~~~
 
+Strings
+-------
+
+C has no data type for strings; instead an array of characters is used: [C-style strings](http://www.cprogramming.com/tutorial/c/lesson9.html) are always terminated with a null character, a '\0' character (with the value of 0). The string below can store 99 letters.
+
+~~~~{.c}
+char string[100];
+~~~~
+
+Use fgets to read in a string from stdin:
+
+~~~~{.c}
+#include <stdio.h>
+
+int main(){
+   char string[256];                               
+
+   printf("Please a string: ");
+   fgets(string, 256, stdin);           
+   printf( "You this string, %s", string );
+
+   return 0;
+}
+~~~~
+
+`string.h` is a header file that contains many functions for manipulating strings. Some examples are below.
+
+~~~~{.c}
+// string comparison
+int strcmp (const char *s1, const char *s2);
+
+// string concatenation
+char *strcat (char *dest, const char *src);
+
+// string copying
+char *strcpy (char *dest, const char *src);
+
+// length of string
+size_t strlen (const char *s);
+~~~~
+
 Rosalind
 --------
 
