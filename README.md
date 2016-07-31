@@ -241,6 +241,50 @@ pointer = malloc(sizeof(*pointer));
 free(pointer);
 ~~~~
 
+Structures
+----------
+
+[Structures](http://www.cprogramming.com/tutorial/c/lesson7.html) provide a way of storing many different values in variables of potentially different types under the same name.
+
+~~~~{.c}
+/*
+   The format for defining a structure is:
+
+   struct Tag {
+      Members
+   };
+*/
+~~~~
+
+Example code in `structure.c`:
+
+~~~~{.c}
+#include <stdio.h>
+
+struct gene {
+   int entrez;
+   int hgnc;
+   int omim;
+};
+
+int main(){
+   struct gene HBA1;
+   HBA1.entrez = 3039;
+   HBA1.hgnc   = 4823;
+   HBA1.omim   = 141800;
+
+   printf("The Entrez ID for HBA1 is %i\n", HBA1.entrez);
+   printf("The HGNC ID for HBA1 is %i\n", HBA1.hgnc);
+
+   struct gene *pointer;
+
+   pointer = &HBA1;
+   printf("The OMIM ID for HBA1 is %i\n", pointer->omim);
+
+   return 0;
+}
+~~~~
+
 Rosalind
 --------
 

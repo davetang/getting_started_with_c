@@ -14,6 +14,7 @@ all:
 	gcc cond.c -o bin/root_two
 	gcc switch_case.c -o bin/switch
 	gcc pointer.c -o bin/pointer
+	gcc structure.c -o bin/structure
 clean:
 	rm -rf bin
 
