@@ -189,6 +189,58 @@ int main(){
 }
 ~~~~
 
+Pointers
+--------
+
+[Pointers](http://www.cprogramming.com/tutorial/c/lesson6.html) point to specific memory locations.
+
+~~~~{.c}
+/*
+   The pointer declaration looks like this:
+   <variable_type> *<name>;
+
+   For example, you could declare a pointer that stores the
+   address of an integer with the following syntax:
+*/
+
+int *points_to_integer;
+int *pointer1, *pointer2;
+~~~~
+
+Below is an example of obtaining the memory location and how to dereference a pointer.
+
+~~~~{.c}
+#include <stdio.h>
+
+int main(){ 
+   int x = 31;
+   int *p;
+
+   p = &x;
+
+   printf("The memory location of x is %p\n", p );
+   printf("The pointer, p, points to the value %d\n", *p );
+
+   return(0);
+}
+~~~~
+
+malloc
+------
+
+The function [malloc](http://c-faq.com/malloc/index.html), which resides in the stdlib.h header file, is used to initialise pointers with memory from free store. The argument to malloc is the amount of memory requested (in bytes), and malloc obtains a block of memory of that size and then returns a pointer to the block of memory allocated.
+
+~~~~{.c}
+#include <stdlib.h>
+
+float *pointer;
+// the sizeof function takes an expression and returns its size
+pointer = malloc(sizeof(*pointer)); 
+
+// the free function returns memory to the operating system
+free(pointer);
+~~~~
+
 Rosalind
 --------
 

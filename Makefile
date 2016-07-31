@@ -13,6 +13,7 @@ all:
 	gcc hello.c -o bin/say_hello
 	gcc cond.c -o bin/root_two
 	gcc switch_case.c -o bin/switch
+	gcc pointer.c -o bin/pointer
 clean:
 	rm -rf bin
 
