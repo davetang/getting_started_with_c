@@ -1,7 +1,7 @@
 Learning C
 ----------
 
-Why am I learning C? Check out my [blog post](http://davetang.org/muse/2014/04/28/getting-started-with-c/) and this [post](http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html). You can create a PDF of this README using [pandoc](http://pandoc.org/):
+Why am I learning C? Check out my [blog post](http://davetang.org/muse/2014/04/28/getting-started-with-c/) and this [post](http://spectrum.ieee.org/computing/software/the-2016-top-programming-languages). You can create a PDF of this README using [pandoc](http://pandoc.org/):
 
 ~~~~{.bash}
 pandoc README.md -o readme.pdf
@@ -324,6 +324,37 @@ char *strcpy (char *dest, const char *src);
 
 // length of string
 size_t strlen (const char *s);
+~~~~
+
+File input/output
+-----------------
+
+For [C File I/O](http://www.cprogramming.com/tutorial/cfileio.html) you need to use a FILE pointer; you can think of it as the memory address of the file or the location of the file. Use `fopen` to obtain the FILE pointer, which allows you to perform functions on the file.
+
+~~~~{.c}
+FILE *fopen(const char *filename, const char *mode);
+~~~~
+
+Code to open and read a file (see `read_file.c`):
+
+~~~~{.c}
+#include <stdio.h>
+
+int main(){
+
+   FILE *fr;
+   char buff[255];
+
+   fr = fopen("etc/transcript.txt", "r");
+
+   while(fgets(buff, 255, fr) != NULL){
+      printf ("%s", buff);
+   }
+   
+   fclose(fr);
+
+   return 0;
+}
 ~~~~
 
 Rosalind

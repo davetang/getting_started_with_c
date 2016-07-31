@@ -1,44 +1,39 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main( int argc, char *argv[] )  
-{
+/*
+   r  - open for reading
+   w  - open for writing (file need not exist)
+   a  - open for appending (file need not exist)
+   r+ - open for reading and writing, start at beginning
+   w+ - open for reading and writing (overwrite file)
+   a+ - open for reading and writing (append if file exists)
+*/
 
-  if(argc != 2){
-    fprintf(stderr, "Please input one file name\n");
-    exit(1);
-  }
+int main(){
 
-  FILE *ifp;
-  char *mode = "r";
-  char chr [30];
-  int start;
-  int end;
-  char id [30];
-  int score;
-  char strand [2];
+   FILE *fr;
+   char buff[255];
 
-  char *my_file_name = argv[1];
+   fr = fopen("etc/transcript.txt", "r");
 
-  ifp = fopen(my_file_name, mode);
+   if(fr == NULL) {
+      perror("Error opening file etc/transcript.txt");
+      return(-1);
+   }
 
-  if (ifp == NULL) {
-    fprintf(stderr, "Could not open input file %s!\n", my_file_name);
-    exit(1);
-  }
+/*
+   fgets(): char *fgets(char *str, int n, FILE *stream)
+      str: This is the pointer to an array of chars where the string read is stored
+      n: This is the maximum number of characters to be read (including the final null-character). Usually, the length of the array passed as str is used
+      stream: This is the pointer to a FILE object that identifies the stream where characters are read from
+*/
 
-  /* http://stackoverflow.com/questions/3501338/c-read-file-line-by-line */
-  char * line = NULL;
-  size_t len = 0;
-  ssize_t read;
+   while(fgets(buff, 255, fr) != NULL){
+      printf ("%s", buff);
+   }
+   
+   fclose(fr);
 
-  while ((read = getline(&line, &len, ifp)) != -1) {
-    /* printf("Retrieved line of length %zu :\n", read); */
-    sscanf (line, "%s %d %d %s %d %s", chr, &start, &end, id, &score, strand);
-    printf ("%s\t%d\t%d\t%s\t%d\t%s\n", chr, start, end, id, score, strand);
-  }
-
-  fclose(ifp);
-
-  return 0;
+   return 0;
 }
+
