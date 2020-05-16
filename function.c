@@ -24,12 +24,12 @@ int multiply_by_ten(int x){
 */
 
 int multiply (int num, ... ){   
+   int total = 0;
    va_list arguments;
-   int total;
+   int x;
 
    va_start (arguments, num);
 
-   int x;
    for (x = 0; x < num; x++){   
       total *= va_arg(arguments, int);
    }

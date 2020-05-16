@@ -16,10 +16,10 @@
 
 int main ()
 {
-   // dereferencing a pointer is done by using *
+   /* dereferencing a pointer is done by using * */
    int a = 1;
 
-   // define a pointer variable, and point it to a using &
+   /* define a pointer variable, and point it to a using & */
    int * pointer_to_a = &a;
 
    printf("The value of a is %d\n", a);

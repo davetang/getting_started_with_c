@@ -9,14 +9,13 @@ and argv[] is a pointer array which points to each argument passed to the progra
 
 int main( int argc, char *argv[] )  
 {
-   char my_file_name;
+   int i;
    printf("The number of arguments passed is %d\n", argc);
 
    /*
    argv[0] is this file
    */
 
-   int i;
    for(i = 0; i < argc; ++i){
       printf("argv[%d] is %s\n", i, argv[i]);
    }

@@ -415,6 +415,7 @@ I am attempting to solve [Rosalind problems](http://rosalind.info/problems/list-
 Links
 =====
 
+* [C Programming Tutorial](https://randu.org/tutorials/c/index.php)
 * [The Basics of C Programming](https://computer.howstuffworks.com/c.htm)
 * [My notes](http://davetang.org/wiki2/index.php?title=C).
 

@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 int main (){
+   int n;
 
-   // create array of numbers
+   /* create array of numbers */
    int series[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 
    /*
@@ -15,7 +16,7 @@ int main (){
       printf("%d\n", series[i]);
    }
 
-   int n = 0;
+   n = 0;
    while (1){
       n++;
 
@@ -31,7 +32,7 @@ int main (){
 
       printf("%d is an even number\n", n);
 
-      // exit loop when n = 20
+      /* exit loop when n = 20 */
       if (n == 20){
          printf("Reached 20 loops\n");
          break;
