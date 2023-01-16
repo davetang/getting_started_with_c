@@ -1,6 +1,7 @@
 Table of Contents
 =================
 
+   * [Fundamentals](#fundamentals)
    * [Getting started](#getting-started)
    * [Introduction](#introduction)
    * [Data types](#data-types)
@@ -9,7 +10,7 @@ Table of Contents
    * [Functions](#functions)
    * [Switch case](#switch-case)
    * [Pointers](#pointers)
-   * [malloc](#malloc)
+   * [Memory allocation](#memory-allocation)
    * [Structures](#structures)
    * [Strings](#strings)
    * [File input/output](#file-inputoutput)
@@ -19,20 +20,88 @@ Table of Contents
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
-Why am I learning C? Check out my [blog post](http://davetang.org/muse/2014/04/28/getting-started-with-c/) and this [post](http://spectrum.ieee.org/computing/software/the-2016-top-programming-languages). You can create a PDF of this README using [pandoc](http://pandoc.org/):
+Why am I learning C? Check out my [blog
+post](http://davetang.org/muse/2014/04/28/getting-started-with-c/) and this
+[post](http://spectrum.ieee.org/computing/software/the-2016-top-programming-languages).
+You can create a PDF of this README using [pandoc](http://pandoc.org/):
 
 ```bash
 pandoc README.md -o readme.pdf
 ```
 
-Getting started
-===============
+## Fundamentals
 
-You will need a compiler, such as `gcc` (GNU C compiler); I have some notes of my [GitHub page](http://davetang.github.io/2014/11/03/compiling.html) on compiling. Basically a compiler analyses a program and translates it into a form that is suitable for execution on your computer. If you are using Windows or macOS, you can use [Docker](https://github.com/davetang/learning_docker) to run an instance of Ubuntu so that you can compile the examples.
+The basic operations of a computer system form the [instruction
+set](https://simple.wikipedia.org/wiki/Instruction_set). An instruction set
+architecture includes a specification set of
+[opcodes](https://simple.wikipedia.org/wiki/Opcode), which are the native
+commands implemented in a particular CPU design.
 
-During the compilation process, the source code is translated by the compiler into assembly code and then translated into actual machine instructions in a format known as *object code*. This file typically has the same name as the source file but with a `.o` suffix.
+A computer program is simply a collection of instructions that solve a specific
+problem. The approach or method that is used to solve the problem is known as
+an _algorithm_.
 
-If the program uses other programs, they need to be linked together. Programs that are used from the system's program library are also searched and linked together with the object program. The process of compiling and linking a program is often called *building*. The final linked file is an executable object saved as a file.
+In the early days of computers, the only way they could be programmed was in
+terms of binary numbers that corresponded directly to specific machine
+instructions and locations in the computer's memory. With the development of
+_assembly languages_, programmers can use symbolic names to perform various
+operations instead of having to specify sequences of binary numbers.
+
+The next innovation were higher-level languages, where FORmula TRANslation
+(FORTRAN) was one of the first. One FORTRAN instruction or _statement_ resulted
+in many different machine instructions being executed. Higher-level languages
+require a special program called a _compiler_ that analyses and translates the
+statements into the particular instructions of the computer.
+
+A development cycle starts with entering code into a file and C programs are
+typically named with a `.c` suffix. This is the _source code_, which then
+gets compiled. During compilation, the compiler examines each program
+statement and ensures that it conforms to the syntax and semantics. Errors
+that may prop up include _syntactic errors_ (e.g. missing parentheses) or
+_semantic errors_ (e.g. an undefined variable).
+
+The compiler will translate each statement into a lower form, which typically
+means statements in assembly language. Afterwards, the assembly language
+statements are translated into actual machine instructions. This step is
+carried out by an _assembler_, which is executed automatically during
+compilation.
+
+The assembler converts each assembly statement into a binary format known as
+_object code_, which is written into another file on the system. This file
+typically has the same name as the source file but with a `.o` suffix instead
+of `.c`.
+
+Linking is carried out next to get the program into a final form ready for
+execution. If the program uses other programs that were previously processed by
+the compiler, then they will be linked together. Programs that are used from
+the system's program _library_ are also searched and linked together with the
+object program.
+
+The process of compiling and linking a program is often called _building_. The
+final linked file, which is in an _executable object_ code format, is stored as
+another file, ready to be _executed_. By default this file is called `a.out`
+and can be executed by running `./a.out`. This will _load_ the program into the
+computer's memory and initiate its execution.
+
+## Getting started
+
+You will need a compiler, such as `gcc` (GNU C compiler); I have some notes of
+my [GitHub page](http://davetang.github.io/2014/11/03/compiling.html) on
+compiling. Basically a compiler analyses a program and translates it into a
+form that is suitable for execution on your computer. If you are using Windows
+or macOS, you can use [Docker](https://github.com/davetang/learning_docker) to
+run an instance of Ubuntu so that you can compile the examples.
+
+During the compilation process, the source code is translated by the compiler
+into assembly code and then translated into actual machine instructions in a
+format known as *object code*. This file typically has the same name as the
+source file but with a `.o` suffix.
+
+If the program uses other programs, they need to be linked together. Programs
+that are used from the system's program library are also searched and linked
+together with the object program. The process of compiling and linking a
+program is often called *building*. The final linked file is an executable
+object saved as a file.
 
 To compile a specific example, type:
 
@@ -50,8 +119,7 @@ make
 
 The binaries will be stored in the `bin` folder.
 
-Introduction
-============
+## Introduction
 
 Here's the source code of a simple C program:
 
@@ -68,7 +136,12 @@ int main(){
 }
 ```
 
-The [include directive](https://en.wikipedia.org/wiki/Include_directive) tells the compiler to put code from the header called stdio.h into our program before creating the executable. The "main" function is called when the C program is executed, thereby running the printf() function. The return is used to tell the operating system whether the program has succeeded or not; a return value of 0 means success. Now to compile and to execute the program.
+The [include directive](https://en.wikipedia.org/wiki/Include_directive) tells
+the compiler to put code from the header called stdio.h into our program before
+creating the executable. The "main" function is called when the C program is
+executed, thereby running the printf() function. The return is used to tell the
+operating system whether the program has succeeded or not; a return value of 0
+means success. Now to compile and to execute the program.
 
 ```bash
 gcc hello.c -o say_hello
@@ -77,10 +150,13 @@ say_hello
 #Hello world.
 ```
 
-Data types
-==========
+## Data types
 
-Data types are used to store different types of data; basic types include `char`, `int`, and `float`. A variable of type `char` stores a single character; type `int` stores integers; and type `float` stores decimal numbers. The keywords `char`, `int`, and `float` are used to declare a variable. For example, in `data_type.c`:
+Data types are used to store different types of data; basic types include
+`char`, `int`, and `float`. A variable of type `char` stores a single
+character; type `int` stores integers; and type `float` stores decimal numbers.
+The keywords `char`, `int`, and `float` are used to declare a variable. For
+example, in `data_type.c`:
 
 ```c
 char my_char;
@@ -96,8 +172,7 @@ my_float = 1.200000001;
 printf("my_float -> %f\n", my_float);
 ```
 
-Conditionals
-============
+## Conditionals
 
 Use `if`, `else if`, and `else`.
 
@@ -122,8 +197,7 @@ int main(){
 }
 ```
 
-Loops
-=====
+## Loops
 
 There are three types of loops: `for`, `while`, and `do..while`; see `loop.c`.
 
@@ -158,10 +232,14 @@ do {
 } while (0);
 ```
 
-Functions
-=========
+## Functions
 
-Functions need to be declared right at the start or its prototype. Prototypes are declarations of functions; they are only necessary to alert the compiler about the existence of a function if we don't want to go ahead and fully define the function. If the function returns a value, you must declare the type of value the function returns in the function declaration. In the example below, an integer is returned (the result of adding the two arguments).
+Functions need to be declared right at the start or its prototype. Prototypes
+are declarations of functions; they are only necessary to alert the compiler
+about the existence of a function if we don't want to go ahead and fully define
+the function. If the function returns a value, you must declare the type of
+value the function returns in the function declaration. In the example below,
+an integer is returned (the result of adding the two arguments).
 
 ```c
 #include <stdio.h>
@@ -188,10 +266,10 @@ Note that a C function can only return a single value.
 
 See `function.c` for implementing functions with a variable number of arguments.
 
-Switch case
-===========
+## Switch case
 
-Switch case statements are a substitute for long `if` statements that compare a variable to several values.
+Switch case statements are a substitute for long `if` statements that compare a
+variable to several values.
 
 ```c
 #include <stdio.h>
@@ -222,10 +300,10 @@ int main(){
 }
 ```
 
-Pointers
-========
+## Pointers
 
-[Pointers](http://www.cprogramming.com/tutorial/c/lesson6.html) point to specific memory locations.
+[Pointers](http://www.cprogramming.com/tutorial/c/lesson6.html) point to
+specific memory locations.
 
 ```c
 /*
@@ -240,7 +318,8 @@ int *points_to_integer;
 int *pointer1, *pointer2;
 ```
 
-Below is an example of obtaining the memory location and how to dereference a pointer.
+Below is an example of obtaining the memory location and how to dereference a
+pointer.
 
 ```c
 #include <stdio.h>
@@ -258,10 +337,13 @@ int main(){
 }
 ```
 
-malloc
-======
+## Memory allocation
 
-The function [malloc](http://c-faq.com/malloc/index.html), which resides in the stdlib.h header file, is used to initialise pointers with memory from free store. The argument to malloc is the amount of memory requested (in bytes), and malloc obtains a block of memory of that size and then returns a pointer to the block of memory allocated.
+The function [malloc](http://c-faq.com/malloc/index.html), which resides in the
+stdlib.h header file, is used to initialise pointers with memory from free
+store. The argument to malloc is the amount of memory requested (in bytes), and
+malloc obtains a block of memory of that size and then returns a pointer to the
+block of memory allocated.
 
 ```c
 #include <stdlib.h>
@@ -274,10 +356,11 @@ pointer = malloc(sizeof(*pointer));
 free(pointer);
 ```
 
-Structures
-==========
+## Structures
 
-[Structures](http://www.cprogramming.com/tutorial/c/lesson7.html) provide a way of storing many different values in variables of potentially different types under the same name.
+[Structures](http://www.cprogramming.com/tutorial/c/lesson7.html) provide a way
+of storing many different values in variables of potentially different types
+under the same name.
 
 ```c
 /*
@@ -318,10 +401,12 @@ int main(){
 }
 ```
 
-Strings
-=======
+## Strings
 
-C has no data type for strings; instead an array of characters is used: [C-style strings](http://www.cprogramming.com/tutorial/c/lesson9.html) are always terminated with a null character, a '\0' character (with the value of 0). The string below can store 99 letters.
+C has no data type for strings; instead an array of characters is used:
+  [C-style strings](http://www.cprogramming.com/tutorial/c/lesson9.html) are
+  always terminated with a null character, a '\0' character (with the value of
+  0). The string below can store 99 letters.
 
 ```c
 char string[100];
@@ -343,7 +428,8 @@ int main(){
 }
 ```
 
-`string.h` is a header file that contains many functions for manipulating strings. Some examples are below.
+`string.h` is a header file that contains many functions for manipulating
+strings. Some examples are below.
 
 ```c
 // string comparison
@@ -359,10 +445,12 @@ char *strcpy (char *dest, const char *src);
 size_t strlen (const char *s);
 ```
 
-File input/output
-=================
+## File input/output
 
-For [C File I/O](http://www.cprogramming.com/tutorial/cfileio.html) you need to use a FILE pointer; you can think of it as the memory address of the file or the location of the file. Use `fopen` to obtain the FILE pointer, which allows you to perform functions on the file.
+For [C File I/O](http://www.cprogramming.com/tutorial/cfileio.html) you need to
+use a FILE pointer; you can think of it as the memory address of the file or
+the location of the file. Use `fopen` to obtain the FILE pointer, which allows
+you to perform functions on the file.
 
 ```c
 FILE *fopen(const char *filename, const char *mode);
@@ -390,32 +478,37 @@ int main(){
 }
 ```
 
-Libraries
-=========
+## Libraries
 
-C supports the notion of modular programming and statements for a particular program can be split across many logically grouped files. For example, if your statements are split across three files:
+C supports the notion of modular programming and statements for a particular
+program can be split across many logically grouped files. For example, if
+your statements are split across three files:
 
 ```bash
 gcc mod1.c mod2.c main.c -o dbtest
 ```
 
-To call a function that resides in another file, always make certain to include a prototype declaration so the compiler knows the function's argument types and the type of the return value.
+To call a function that resides in another file, always make certain to include
+a prototype declaration so the compiler knows the function's argument types and
+the type of the return value.
 
-Functions contained in separate files can communicate through external variables, an extension to global variables.
+Functions contained in separate files can communicate through external
+variables, an extension to global variables.
 
-You can group all your commonly used definitions inside an include file and include said file in any program that requires those definitions.
+You can group all your commonly used definitions inside an include file and
+include said file in any program that requires those definitions.
 
-The Unix utility `ar` can be used to create your own libraries, which is useful for creating a bunch of utility functions that are frequently used. You can use the option `-llib` to link your own library and functions are pulled from the library and linked together with your program during the linking phase.
+The Unix utility `ar` can be used to create your own libraries, which is useful
+for creating a bunch of utility functions that are frequently used. You can use
+the option `-llib` to link your own library and functions are pulled from the
+library and linked together with your program during the linking phase.
 
-Rosalind
-========
+## Rosalind
 
 I am attempting to solve [Rosalind problems](http://rosalind.info/problems/list-view/) using C. The solutions will be stored in the rosalind folder.
 
-Links
-=====
+## Links
 
 * [C Programming Tutorial](https://randu.org/tutorials/c/index.php)
 * [The Basics of C Programming](https://computer.howstuffworks.com/c.htm)
 * [My notes](http://davetang.org/wiki2/index.php?title=C).
-
