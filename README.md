@@ -15,6 +15,7 @@ Table of Contents
    * [Strings](#strings)
    * [File input/output](#file-inputoutput)
    * [Libraries](#libraries)
+      * [Shared libraries](#shared-libraries)
    * [Rosalind](#rosalind)
    * [Links](#links)
 
@@ -85,25 +86,8 @@ computer's memory and initiate its execution.
 
 ## Getting started
 
-You will need a compiler, such as `gcc` (GNU C compiler); I have some notes of
-my [GitHub page](http://davetang.github.io/2014/11/03/compiling.html) on
-compiling. Basically a compiler analyses a program and translates it into a
-form that is suitable for execution on your computer. If you are using Windows
-or macOS, you can use [Docker](https://github.com/davetang/learning_docker) to
-run an instance of Ubuntu so that you can compile the examples.
-
-During the compilation process, the source code is translated by the compiler
-into assembly code and then translated into actual machine instructions in a
-format known as *object code*. This file typically has the same name as the
-source file but with a `.o` suffix.
-
-If the program uses other programs, they need to be linked together. Programs
-that are used from the system's program library are also searched and linked
-together with the object program. The process of compiling and linking a
-program is often called *building*. The final linked file is an executable
-object saved as a file.
-
-To compile a specific example, type:
+To build the examples in this repository, you will need a compiler, such as
+`gcc` (GNU C compiler). To compile a specific example, type:
 
 ```bash
 # C programs typically end in .c
@@ -503,12 +487,36 @@ for creating a bunch of utility functions that are frequently used. You can use
 the option `-llib` to link your own library and functions are pulled from the
 library and linked together with your program during the linking phase.
 
+### Shared libraries
+
+Most programs on Linux use a bunch of C libraries, such as `openssl`, `zlib`,
+and `libstdc++`.
+
+There are two ways to use any library:
+
+1. Link it into your binary, i.e. statically linked.
+2. Use separate shared libraries, i.e. dynamically linked.
+
+Use `ldd` (print shared library dependencies) to show shared libraries a
+program is using.
+
+The dynamic linker [looks in the
+following](https://en.wikipedia.org/wiki/Rpath#GNU_ld.so) (in order):
+
+1. `DT_RPATH` known as the [rpath](https://en.wikipedia.org/wiki/Rpath), which
+   designates the run-time search path hard-coded in the executable.
+2. Path set by the environment variable `LD_LIBRARY_PATH`.
+3. DT_RUNPATH set in the executable.
+4. Lookup based on `/etc/ld.so.cache` (run `ldconfig -p` to see contents).
+5. Default paths `/lib` and then `/usr/lib`.
+
 ## Rosalind
 
-I am attempting to solve [Rosalind problems](http://rosalind.info/problems/list-view/) using C. The solutions will be stored in the rosalind folder.
+I am attempting to solve [Rosalind
+problems](http://rosalind.info/problems/list-view/) using C. The solutions
+will be stored in the rosalind folder.
 
 ## Links
 
 * [C Programming Tutorial](https://randu.org/tutorials/c/index.php)
 * [The Basics of C Programming](https://computer.howstuffworks.com/c.htm)
-* [My notes](http://davetang.org/wiki2/index.php?title=C).
