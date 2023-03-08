@@ -54,13 +54,6 @@ in many different machine instructions being executed. Higher-level languages
 require a special program called a _compiler_ that analyses and translates the
 statements into the particular instructions of the computer.
 
-A development cycle starts with entering code into a file and C programs are
-typically named with a `.c` suffix. This is the _source code_, which then
-gets compiled. During compilation, the compiler examines each program
-statement and ensures that it conforms to the syntax and semantics. Errors
-that may prop up include _syntactic errors_ (e.g. missing parentheses) or
-_semantic errors_ (e.g. an undefined variable).
-
 The compiler will translate each statement into a lower form, which typically
 means statements in assembly language. Afterwards, the assembly language
 statements are translated into actual machine instructions. This step is
@@ -86,6 +79,15 @@ computer's memory and initiate its execution.
 
 ## Getting started
 
+A development cycle starts with entering code into a file and C programs are
+typically named with a `.c` suffix. This is the _source code_, which then
+gets compiled. During compilation, the compiler examines each program
+statement and ensures that it conforms to the syntax and semantics. Errors
+that may prop up include _syntactic errors_ (e.g. missing parentheses) or
+_semantic errors_ (e.g. an undefined variable) and need to be fixed. Once
+errors have been addressed, compilation is carried out again, and if all goes
+well an executable is generated.
+
 To build the examples in this repository, you will need a compiler, such as
 `gcc` (GNU C compiler). To compile a specific example, type:
 
@@ -95,13 +97,13 @@ To build the examples in this repository, you will need a compiler, such as
 gcc input_output.c -o choose_number
 ```
 
-or to compile all the examples, type:
+Or to compile all the examples, type:
 
 ```bash
 make
 ```
 
-The binaries will be stored in the `bin` folder.
+The executables/binaries will be stored in the `bin` folder.
 
 ## Introduction
 
@@ -509,6 +511,29 @@ following](https://en.wikipedia.org/wiki/Rpath#GNU_ld.so) (in order):
 3. DT_RUNPATH set in the executable.
 4. Lookup based on `/etc/ld.so.cache` (run `ldconfig -p` to see contents).
 5. Default paths `/lib` and then `/usr/lib`.
+
+For example, `flank_bed.c` uses the `stdio.h` and `stdlib.h` header files,
+which are part of the [C standard
+library](https://en.wikipedia.org/wiki/C_standard_library).
+
+After compiling `flank_bed.c`, we can see the shared libraries it uses.
+
+```console
+gcc flank_bed.c -o flank_bed
+ldd flank_bed
+#        linux-vdso.so.1 =>  (0x00007ffe4e133000)
+#        libc.so.6 => /lib64/libc.so.6 (0x00007f0eeebcc000)
+#        /lib64/ld-linux-x86-64.so.2 (0x00007f0eeef9a000)
+```
+
+`linux-vdso.so.1` is a [virtual dynamic shared
+object](https://man7.org/linux/man-pages/man7/vdso.7.html) that the kernel
+automatically maps into the address space of all user-space applications.
+
+`/lib64/libc.so.6` is the C standard library.
+
+`/lib64/ld-linux-x86-64.so.2`, which you can execute, is the helper program for
+shared library executables.
 
 ## Rosalind
 
