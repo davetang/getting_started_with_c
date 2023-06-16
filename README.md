@@ -545,3 +545,5 @@ will be stored in the rosalind folder.
 
 * [C Programming Tutorial](https://randu.org/tutorials/c/index.php)
 * [The Basics of C Programming](https://computer.howstuffworks.com/c.htm)
+* [Unlock the Mysteries of Pointers in
+C](https://www.freecodecamp.org/news/finally-understand-pointers-in-c/)
