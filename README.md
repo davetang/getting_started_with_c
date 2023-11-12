@@ -491,18 +491,24 @@ library and linked together with your program during the linking phase.
 
 ### Shared libraries
 
-Most programs on Linux use a bunch of C libraries, such as `openssl`, `zlib`,
-and `libstdc++`.
+Most programs on Linux use a bunch of C libraries, such as:
+
+* `openssl` for SSL
+* `zlib` for gzip
+* `libstdc++` for the GNU C++ library
+* `sqlite` for SQLite
+* `pcre` for Perl Compatible Regular Expressions
 
 There are two ways to use any library:
 
-1. Link it into your binary, i.e. statically linked.
-2. Use separate shared libraries, i.e. dynamically linked.
+1. Link it into your binary, i.e. statically linked, resulting in one big binary
+2. Use separate shared libraries, i.e. dynamically linked, using separate files
 
 Use `ldd` (print shared library dependencies) to show shared libraries a
-program is using.
+program is using; see below for an example.
 
-The dynamic linker [looks in the
+If you get a library not found error, it's because the dynamically linked
+binrary can not find the library files. The dynamic linker [looks in the
 following](https://en.wikipedia.org/wiki/Rpath#GNU_ld.so) (in order):
 
 1. `DT_RPATH` known as the [rpath](https://en.wikipedia.org/wiki/Rpath), which
