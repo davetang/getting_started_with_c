@@ -9,7 +9,7 @@ CC = /usr/bin/gcc
 # -Wall: Turn on all Warnings. ALWAYS use this. You will benefit from it.
 # -O2: Optimization Level 2, nearly all supported optimizations that do not involve a space-speed tradeoff are performed. Increases compilation time, but produces performance-enhanced code.
 # -o: Specify output file to be created
-CFLAGS = -ansi -pedantic -Wall -O2
+CFLAGS = -ansi -pedantic -Wall -O2 -std=c99
 
 all:
 	$(CC) $(CFLAGS) input_output.c -o bin/choose_number
@@ -25,6 +25,6 @@ all:
 	$(CC) $(CFLAGS) switch_case.c -o bin/switch
 	$(CC) $(CFLAGS) pointer.c -o bin/pointer
 	$(CC) $(CFLAGS) structure.c -o bin/structure
+	$(CC) $(CFLAGS) rand.c -o bin/rand
 clean:
 	rm -rf bin
-
